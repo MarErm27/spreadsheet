@@ -175,8 +175,12 @@ func (r *updateRequest) UpdateCells(sheet *Sheet) *updateRequest {
 		for _, field := range strings.Split(cell.modifiedFields, ",") {
 			switch field {
 			case "userEnteredValue":
+				cellValueTypeString := cell.CustomType
+				if cellValueTypeString == "" {
+					cellValueTypeString = cellValueType(cell.Value)
+				}
 				values["userEnteredValue"] = map[string]string{
-					cellValueType(cell.Value): cell.Value,
+					cellValueTypeString: cell.Value,
 				}
 			case "note":
 				values["note"] = cell.Note

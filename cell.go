@@ -8,6 +8,14 @@ type Cell struct {
 	Column uint
 	Value  string
 	Note   string
+	// Set this to override the auto detection of field type
+	// It can be set to any of the following:
+	// - numberValue
+	// - stringValue
+	// - boolValue
+	// - formulaValue
+	// - errorValue
+	CustomType string
 
 	modifiedFields string
 }
