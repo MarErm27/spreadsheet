@@ -123,9 +123,11 @@ func (sheet *Sheet) updateCellField(row, column int, updater func(c *Cell) strin
 }
 
 // Update updates cell changes
-func (sheet *Sheet) Update(row, column int, val string) {
+// Leave customType blank for auto detect, or see the documentation on customType in the Cell type
+func (sheet *Sheet) Update(row, column int, val, customType string) {
 	sheet.updateCellField(row, column, func(c *Cell) string {
 		c.Value = val
+		c.CustomType = customType
 		return "userEnteredValue"
 	})
 }
